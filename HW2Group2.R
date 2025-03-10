@@ -1,6 +1,6 @@
-#Libraries 
+# Libraries 
 library(dplyr)
-#problem1
+# problem1
 df1=data.frame(Name=c('James','Paul','Richards','Marico','Samantha','Ravi','Raghu',
                      'Richards','George','Ema','Samantha','Catherine'),
               State=c('Alaska','California','Texas','North Carolina','California','Texas',
@@ -62,20 +62,29 @@ print(attendance_by_year);
 #2014	55,374.91
 # the trend has been sporadic over the years 
 
-#Problem 3 
-metabolite <- read.csv("metabolite.csv");
+# problem 3
+metabolite_data <- read.csv("metabolite.csv")
 
-#A
-alzheimers_count <- sum(metabolite$Condition == "Alzheimer", na.rm = TRUE); 
-print(paste("Alzheimer's patients:", alzheimers_count));
-#b
-missing_values <- colSums(is.na(metabolite)); 
-print(missing_values);
-#c
-cleaned_data <- metabolite[!is.na(metabolite$Dopamine), ]; 
-#d
-median_c4 <- median(cleaned_data$`c4-OH-Pro`, na.rm = TRUE);
-cleaned_data$`c4-OH-Pro`[is.na(cleaned_data$`c4-OH-Pro`)] <- median_c4
+# a
+alzheimers_count <- sum(metabolite_data$Condition == "Alzheimers", na.rm = TRUE)
+View(paste("Alzheimer's patients:", alzheimers_count))
+
+# b
+missing_values <- colSums(is.na(metabolite_data))
+View(missing_values)
+
+# c
+cleaned_data <- metabolite_data[!is.na(metabolite_data$Dopamine), ]
+View(paste("Rows after removing missing Dopamine values:", nrow(cleaned_data)))
+
+# d
+median_c4 <- median(cleaned_data$c4.OH.Pro, na.rm = TRUE)
+cleaned_data$c4.OH.Pro[is.na(cleaned_data$c4.OH.Pro)] <- median_c4
+View(paste("Median c4-OH-Pro used for replacement:", median_c4))
+
+
+
+
 
 
 
